@@ -1,6 +1,7 @@
 package fr.epsi.springjpa;
 
 import fr.epsi.springjpa.model.Animal;
+import fr.epsi.springjpa.model.Species;
 import fr.epsi.springjpa.repository.AnimalRepository;
 import fr.epsi.springjpa.repository.PersonRepository;
 import fr.epsi.springjpa.repository.RoleRepository;
@@ -59,11 +60,17 @@ public class SpringJpaApplication implements CommandLineRunner {
             System.out.println(role);
         });
 
-        System.out.println("\n========== FIN ==========\n");
+        System.out.println("\n========== Test Query et les requetes specifiées ==========\n");
 
         //test findBySpecies
         List<Animal> animaux = animalRepository.findBySpecies(speciesRepository.findById(1).orElseThrow());
         System.out.println("Animaux de la species 1 : " + animaux);
+
+        //Test avec @Query
+        List<Species> speciesList = speciesRepository.findAllSpeciesOrderedByCommonName();
+        System.out.println("Species List order ASC par commonName: "+ speciesList);
+
+        System.out.println(animalRepository.countAnimalBySex("M"));
     }
 
 }
