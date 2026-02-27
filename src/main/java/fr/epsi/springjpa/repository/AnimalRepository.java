@@ -1,6 +1,7 @@
 package fr.epsi.springjpa.repository;
 
 import fr.epsi.springjpa.model.Animal;
+import fr.epsi.springjpa.model.Species;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,10 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer> {
     List<Animal> findBySpeciesId(Integer speciesId);
     
     List<Animal> findByNameContainingIgnoreCase(String name);
+    
+    // Retourne tous les animaux de la Species fournie en paramètre
+    List<Animal> findBySpecies(Species species);
+    
+    // Retourne tous les animaux dont la couleur fait partie de la liste fournie
+    List<Animal> findByColorIn(List<String> colors);
 }

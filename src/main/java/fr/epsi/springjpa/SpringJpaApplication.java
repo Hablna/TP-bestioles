@@ -1,5 +1,6 @@
 package fr.epsi.springjpa;
 
+import fr.epsi.springjpa.model.Animal;
 import fr.epsi.springjpa.repository.AnimalRepository;
 import fr.epsi.springjpa.repository.PersonRepository;
 import fr.epsi.springjpa.repository.RoleRepository;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 @SpringBootApplication
 public class SpringJpaApplication implements CommandLineRunner {
@@ -57,6 +60,10 @@ public class SpringJpaApplication implements CommandLineRunner {
         });
 
         System.out.println("\n========== FIN ==========\n");
+
+        //test findBySpecies
+        List<Animal> animaux = animalRepository.findBySpecies(speciesRepository.findById(1).orElseThrow());
+        System.out.println("Animaux de la species 1 : " + animaux);
     }
 
 }

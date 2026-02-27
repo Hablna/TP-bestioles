@@ -22,4 +22,10 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
     List<Person> findByFirstnameContainingIgnoreCase(String firstname);
     
     List<Person> findByLastnameContainingIgnoreCase(String lastname);
+    
+    // Retourne les personnes ayant pour nom le premier paramètre ou pour prénom le second paramètre
+    List<Person> findByLastnameOrFirstname(String lastname, String firstname);
+    
+    // Retourne toutes les personnes d'un âge supérieur ou égal au paramètre
+    List<Person> findByAgeGreaterThanEqual(Integer age);
 }
